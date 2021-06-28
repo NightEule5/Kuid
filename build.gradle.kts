@@ -36,7 +36,7 @@ allprojects {
 	{
 		val main by getting
 		
-		create("jvm9")
+		create("jvm8")
 		{
 			kotlin.source(main.kotlin)
 			
@@ -44,11 +44,11 @@ allprojects {
 		}
 	}
 	
-	val jvm9 by kotlin.target.compilations.creating()
+	val jvm8 by kotlin.target.compilations.creating()
 	{
 		kotlinOptions.run()
 		{
-			jvmTarget       = "9"
+			jvmTarget       = "1.8"
 			languageVersion = "1.5"
 			
 			freeCompilerArgs =
@@ -58,7 +58,7 @@ allprojects {
 				)
 		}
 		
-		source(kotlin.sourceSets["jvm9"])
+		source(kotlin.sourceSets["jvm8"])
 	}
 	
 	tasks()
@@ -67,7 +67,7 @@ allprojects {
 		{
 			kotlinOptions.run()
 			{
-				jvmTarget       = "1.8"
+				jvmTarget       = "9"
 				languageVersion = "1.5"
 				
 				freeCompilerArgs =
@@ -115,11 +115,11 @@ allprojects {
 			}
 		}
 		
-		val jvm9Jar by creating(Jar::class)
+		val jvm8Jar by creating(Jar::class)
 		{
-			archiveClassifier.set("jvm9")
+			archiveClassifier.set("jvm8")
 			
-			from(sourceSets["jvm9"].output)
+			from(sourceSets["jvm8"].output)
 		}
 	}
 	
@@ -137,7 +137,7 @@ allprojects {
 				from(components["kotlin"])
 				
 				artifact(tasks.kotlinSourcesJar)
-				artifact(tasks["jvm9Jar"])
+				artifact(tasks["jvm8Jar"])
 			}
 		}
 	}
