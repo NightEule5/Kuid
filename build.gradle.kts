@@ -32,18 +32,48 @@ allprojects {
 		testImplementation(group = "io.kotest", name = "kotest-runner-junit5", version = "4.6.+")
 	}
 	
+	kotlin.sourceSets()
+	{
+		val main by getting
+		
+		create("jvm9")
+		{
+			kotlin.source(main.kotlin)
+			
+			dependsOn(main)
+		}
+	}
+	
+	val jvm9 by kotlin.target.compilations.creating()
+	{
+		kotlinOptions.run()
+		{
+			jvmTarget       = "9"
+			languageVersion = "1.5"
+			
+			freeCompilerArgs =
+				listOf(
+					"-Xopt-in=kotlin.RequiresOptIn",
+					"-Xjvm-default=all"
+				)
+		}
+		
+		source(kotlin.sourceSets["jvm9"])
+	}
+	
 	tasks()
 	{
 		compileKotlin()
 		{
 			kotlinOptions.run()
 			{
-				jvmTarget       = "9"
+				jvmTarget       = "1.8"
 				languageVersion = "1.5"
 				
 				freeCompilerArgs =
 					listOf(
-						"-Xopt-in=kotlin.RequiresOptIn"
+						"-Xopt-in=kotlin.RequiresOptIn",
+						"-Xjvm-default=all"
 					)
 			}
 		}
@@ -84,6 +114,13 @@ allprojects {
 				html.required.set(true)
 			}
 		}
+		
+		val jvm9Jar by creating(Jar::class)
+		{
+			archiveClassifier.set("jvm9")
+			
+			from(sourceSets["jvm9"].output)
+		}
 	}
 	
 	publishing()
@@ -100,6 +137,7 @@ allprojects {
 				from(components["kotlin"])
 				
 				artifact(tasks.kotlinSourcesJar)
+				artifact(tasks["jvm9Jar"])
 			}
 		}
 	}
