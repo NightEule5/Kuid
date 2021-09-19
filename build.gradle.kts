@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin
 
 plugins {
-	kotlin("jvm")                             version "1.5.20"
-	kotlin("plugin.serialization")            version "1.5.20"
+	kotlin("jvm")                             version "1.5.30"
+	kotlin("plugin.serialization")            version "1.5.30"
 	id("com.bnorm.power.kotlin-power-assert") version "0.9.0"
 	`maven-publish`
 	jacoco
