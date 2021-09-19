@@ -42,7 +42,7 @@ allprojects()
 		{
 			kotlinOptions.run()
 			{
-				jvmTarget       = "9"
+				jvmTarget       = "1.8"
 				languageVersion = "1.5"
 				
 				freeCompilerArgs =
@@ -57,7 +57,7 @@ allprojects()
 		{
 			kotlinOptions.run()
 			{
-				jvmTarget       = "9"
+				jvmTarget       = "1.8"
 				languageVersion = "1.5"
 				
 				freeCompilerArgs =
