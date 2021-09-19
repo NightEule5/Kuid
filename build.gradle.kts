@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	kotlin("jvm")                             version "1.5.30"
@@ -38,7 +39,7 @@ allprojects()
 	
 	tasks()
 	{
-		compileKotlin()
+		withType<KotlinCompile>
 		{
 			kotlinOptions.run()
 			{
@@ -49,20 +50,6 @@ allprojects()
 					listOf(
 						"-Xopt-in=kotlin.RequiresOptIn",
 						"-Xjvm-default=all"
-					)
-			}
-		}
-		
-		compileTestKotlin()
-		{
-			kotlinOptions.run()
-			{
-				jvmTarget       = "1.8"
-				languageVersion = "1.5"
-				
-				freeCompilerArgs =
-					listOf(
-						"-Xopt-in=kotlin.RequiresOptIn"
 					)
 			}
 		}
