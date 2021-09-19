@@ -6,7 +6,6 @@ plugins {
 	kotlin("plugin.serialization")            version "1.5.30"
 	id("com.bnorm.power.kotlin-power-assert") version "0.9.0"
 	`maven-publish`
-	jacoco
 }
 
 subprojects()
@@ -63,18 +62,6 @@ allprojects()
 		test()
 		{
 			useJUnitPlatform()
-			
-			finalizedBy(jacocoTestReport)
-		}
-		
-		jacocoTestReport()
-		{
-			dependsOn(test)
-			
-			reports()
-			{
-				html.required.set(true)
-			}
 		}
 	}
 	
