@@ -36,35 +36,6 @@ allprojects()
 		testImplementation(group = "io.kotest", name = "kotest-runner-junit5", version = "4.6.+")
 	}
 	
-	kotlin.sourceSets()
-	{
-		val main by getting
-		
-		create("jvm8")
-		{
-			kotlin.source(main.kotlin)
-			
-			dependsOn(main)
-		}
-	}
-	
-	val jvm8 by kotlin.target.compilations.creating()
-	{
-		kotlinOptions.run()
-		{
-			jvmTarget       = "1.8"
-			languageVersion = "1.5"
-			
-			freeCompilerArgs =
-				listOf(
-					"-Xopt-in=kotlin.RequiresOptIn",
-					"-Xjvm-default=all"
-				)
-		}
-		
-		source(kotlin.sourceSets["jvm8"])
-	}
-	
 	tasks()
 	{
 		compileKotlin()
@@ -118,13 +89,6 @@ allprojects()
 				html.required.set(true)
 			}
 		}
-		
-		val jvm8Jar by creating(Jar::class)
-		{
-			archiveClassifier.set("jvm8")
-			
-			from(sourceSets["jvm8"].output)
-		}
 	}
 	
 	publishing()
@@ -141,7 +105,6 @@ allprojects()
 				from(components["kotlin"])
 				
 				artifact(tasks.kotlinSourcesJar)
-				artifact(tasks["jvm8Jar"])
 			}
 		}
 	}
