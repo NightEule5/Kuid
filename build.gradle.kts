@@ -8,20 +8,24 @@ plugins {
 	jacoco
 }
 
-subprojects {
+subprojects()
+{
 	apply<KotlinPlatformJvmPlugin>()
 	apply<MavenPublishPlugin     >()
 }
 
-allprojects {
+allprojects()
+{
 	group = "strixpyrr.kuid"
 	version = "0.0.1"
 	
-	repositories {
+	repositories()
+	{
 		mavenCentral()
 	}
 	
-	dependencies {
+	dependencies()
+	{
 		implementation(kotlin("stdlib"))
 		
 		   compileOnly(group = "dev.kord",              name = "kord-common",                version = "0.7.+")
