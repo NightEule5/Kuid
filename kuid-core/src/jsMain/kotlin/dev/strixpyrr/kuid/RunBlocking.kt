@@ -11,15 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package strixpyrr.kuid.nativeUuid
+package dev.strixpyrr.kuid
 
-import strixpyrr.kuid.IIdGenerator
-import java.util.UUID
+private const val RunBlockingNotAvailable =
+	"runBlocking is not available on the JS platform."
 
-class UuidGenerator : IIdGenerator<UUID>
-{
-	override fun nextBlocking(): UUID = nextUuid()
-	override suspend fun next(): UUID = nextUuid()
-}
-
-internal fun nextUuid(): UUID = UUID.randomUUID()
+internal actual inline fun <T, R> T.runBlocking(
+	crossinline block: suspend T.() -> R
+): R = throw UnsupportedOperationException(RunBlockingNotAvailable)

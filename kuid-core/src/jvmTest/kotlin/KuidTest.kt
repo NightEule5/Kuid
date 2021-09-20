@@ -22,9 +22,9 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone.Companion.UTC
 import kotlinx.datetime.toInstant
-import strixpyrr.kuid.snowflake.SnowflakeGenerator
-import strixpyrr.kuid.snowflake.SnowflakeLayout
-import strixpyrr.kuid.snowflake.SnowflakeLayout.Discord
+import dev.strixpyrr.kuid.snowflake.SnowflakeGenerator
+import dev.strixpyrr.kuid.snowflake.SnowflakeLayout
+import dev.strixpyrr.kuid.snowflake.SnowflakeLayout.Discord
 import java.time.Month.JANUARY
 import kotlin.math.floor
 import kotlin.math.roundToLong

@@ -11,14 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package strixpyrr.kuid
+package dev.strixpyrr.kuid
 
+import dev.strixpyrr.kuid.snowflake.SnowflakeGenerator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel.Factory.RENDEZVOUS
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.coroutineScope
-import strixpyrr.kuid.snowflake.SnowflakeGenerator
 
 /**
  * Opens a [ReceiveChannel] that produces Ids on an always-ready, as-needed basis.

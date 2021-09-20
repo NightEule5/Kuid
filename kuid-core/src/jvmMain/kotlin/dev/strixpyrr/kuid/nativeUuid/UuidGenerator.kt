@@ -11,20 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package strixpyrr.kuid
+package dev.strixpyrr.kuid.nativeUuid
 
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
+import dev.strixpyrr.kuid.IIdGenerator
+import java.util.UUID
 
-interface IIdGenerator<out I : Any>
+class UuidGenerator : IIdGenerator<UUID>
 {
-	fun nextBlocking(): I = runBlocking { next() }
-	
-	suspend fun next(): I
-	
-	suspend fun nextAsync(): Deferred<I> = coroutineScope()
-	{
-		async { next() }
-	}
+	override fun nextBlocking(): UUID = nextUuid()
+	override suspend fun next(): UUID = nextUuid()
 }
+
+internal fun nextUuid(): UUID = UUID.randomUUID()

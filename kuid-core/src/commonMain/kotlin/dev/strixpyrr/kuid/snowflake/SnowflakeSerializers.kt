@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package strixpyrr.kuid.snowflake
+package dev.strixpyrr.kuid.snowflake
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
@@ -24,7 +24,7 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-private const val SerialName = "strixpyrr.kuid.snowflake.Snowflake"
+private const val SerialName = "dev.strixpyrr.kuid.snowflake.Snowflake"
 
 /**
  * Serializes a [Snowflake] as its [Long] value. This is the default behavior.

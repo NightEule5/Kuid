@@ -11,17 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package strixpyrr.kuid.snowflake
+package dev.strixpyrr.kuid
 
-import strixpyrr.kuid.snowflake.SnowflakeLayout.Discord
-import dev.kord.common.entity.Snowflake as KordSnowflake
-
-val Snowflake.kordSnowflake get() = KordSnowflake(value)
-
-fun Snowflake.toKordSnowflake(layout: SnowflakeLayout, precise: Boolean = true) =
-	if (!precise || layout === Discord)
-		KordSnowflake(value)
-	else
-		KordSnowflake(
-			convert(from = layout, to = Discord).value
-		)
+internal expect inline fun <T, R> T.runBlocking(crossinline block: suspend T.() -> R): R

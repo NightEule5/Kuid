@@ -11,11 +11,20 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package strixpyrr.kuid
+package dev.strixpyrr.kuid
 
-private const val RunBlockingNotAvailable =
-	"runBlocking is not available on the JS platform."
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
-internal actual inline fun <T, R> T.runBlocking(
-	crossinline block: suspend T.() -> R
-): R = throw UnsupportedOperationException(RunBlockingNotAvailable)
+interface IIdGenerator<out I : Any>
+{
+	fun nextBlocking(): I = runBlocking { next() }
+	
+	suspend fun next(): I
+	
+	suspend fun nextAsync(): Deferred<I> = coroutineScope()
+	{
+		async { next() }
+	}
+}

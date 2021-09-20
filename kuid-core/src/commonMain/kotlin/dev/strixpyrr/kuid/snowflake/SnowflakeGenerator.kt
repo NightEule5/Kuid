@@ -11,12 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package strixpyrr.kuid.snowflake
+package dev.strixpyrr.kuid.snowflake
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.datetime.Clock
-import strixpyrr.kuid.IIdGenerator
+import dev.strixpyrr.kuid.IIdGenerator
 import kotlin.jvm.JvmField
 
 /**
