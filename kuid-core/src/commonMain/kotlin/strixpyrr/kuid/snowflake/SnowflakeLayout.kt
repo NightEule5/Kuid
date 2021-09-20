@@ -96,6 +96,20 @@ sealed class SnowflakeLayout(
 			Mutable().apply(block).finalize()
 		
 		operator fun invoke(
+			timestampEpoch: Instant,
+			timestampLength: Int = DefaultTimestampLength,
+			 workerIdLength: Int = DefaultWorkerIdLength,
+			processIdLength: Int = DefaultProcessIdLength,
+			incrementLength: Int = DefaultIncrementLength
+		) = invoke(
+				timestampEpoch.toEpochMilliseconds(),
+				timestampLength,
+				 workerIdLength,
+				processIdLength,
+				incrementLength
+			)
+		
+		operator fun invoke(
 			timestampEpoch: Long,
 			timestampLength: Int = DefaultTimestampLength,
 			 workerIdLength: Int = DefaultWorkerIdLength,
