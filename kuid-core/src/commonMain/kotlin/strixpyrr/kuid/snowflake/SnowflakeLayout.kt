@@ -14,6 +14,7 @@
 package strixpyrr.kuid.snowflake
 
 import kotlinx.datetime.Instant
+import kotlin.jvm.JvmField
 
 sealed class SnowflakeLayout(
 	@JvmField val timestampEpoch: Long,

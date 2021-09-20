@@ -16,7 +16,6 @@ package strixpyrr.kuid
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
 
 interface IIdGenerator<I : Any>
 {

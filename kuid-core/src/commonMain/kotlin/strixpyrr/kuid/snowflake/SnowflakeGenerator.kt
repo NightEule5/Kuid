@@ -18,6 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.datetime.Clock
 import strixpyrr.kuid.IIdGenerator
+import kotlin.jvm.JvmField
 
 /**
  * @param layout The layout information used to package the generated values into

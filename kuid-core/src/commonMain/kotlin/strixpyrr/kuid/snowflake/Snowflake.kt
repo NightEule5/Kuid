@@ -14,6 +14,7 @@
 package strixpyrr.kuid.snowflake
 
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmField
 
 @Serializable(with = SnowflakeValueSerializer::class)
 data class Snowflake(@JvmField val value: Long) : Comparable<Snowflake>
@@ -30,7 +31,7 @@ data class Snowflake(@JvmField val value: Long) : Comparable<Snowflake>
 		else
 		{
 			val timestamp = from.timestamp.from(this).toEpochMilliseconds()
-			val workerId = from.workerId.from(this)
+			val  workerId = from. workerId.from(this)
 			val processId = from.processId.from(this)
 			val increment = from.increment.from(this).toLong()
 			
