@@ -127,3 +127,14 @@ dependencies()
 {
 	commonMainApi(projects.kuidCore)
 }
+
+publishing()
+{
+	publications()
+	{
+		withType<MavenPublication>
+		{
+			artifactId = artifactId.toLowerCase()
+		}
+	}
+}
