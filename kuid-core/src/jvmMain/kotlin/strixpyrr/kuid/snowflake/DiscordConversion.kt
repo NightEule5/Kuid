@@ -20,7 +20,7 @@ val Snowflake.kordSnowflake get() = KordSnowflake(value)
 
 fun Snowflake.toKordSnowflake(layout: SnowflakeLayout, precise: Boolean = true) =
 	if (!precise || layout === Discord)
-		Snowflake(value)
+		KordSnowflake(value)
 	else
 		KordSnowflake(
 			convert(from = layout, to = Discord).value
