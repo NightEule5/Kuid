@@ -34,7 +34,7 @@ allprojects()
 		id("maven-publish")
 	}
 	
-	group = "strixpyrr.kuid"
+	group = "dev.strixpyrr.kuid"
 	version = "0.0.1"
 	
 	repositories()
