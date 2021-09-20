@@ -17,7 +17,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 
-interface IIdGenerator<I : Any>
+interface IIdGenerator<out I : Any>
 {
 	fun nextBlocking(): I = runBlocking { next() }
 	
