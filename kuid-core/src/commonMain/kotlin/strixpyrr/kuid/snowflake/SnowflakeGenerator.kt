@@ -13,7 +13,6 @@
 // limitations under the License.
 package strixpyrr.kuid.snowflake
 
-import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.datetime.Clock
@@ -125,20 +124,6 @@ class SnowflakeGenerator(
 			processIdShift,
 			increment
 		)
-	
-	/**
-	 * Opens a [ReceiveChannel] that produces [Snowflake]s on an as-needed basis.
-	 * [ReceiveChannel.cancel] must be called when you are done receiving.
-	 */
-	/*@OptIn(ExperimentalCoroutinesApi::class)
-	suspend fun toChannel() = coroutineScope()
-	{
-		produce()
-		{
-			while (!isClosedForSend)
-				send(next())
-		}
-	}*/
 }
 
 @Suppress("NOTHING_TO_INLINE")
