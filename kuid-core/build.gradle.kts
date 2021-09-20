@@ -5,8 +5,8 @@ plugins {
 
 dependencies()
 {
-	   jvmMainCompileOnly   (group = "dev.kord",              name = "kord-common",                version = "0.7.+")
-	commonMainCompileOnly   (group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version = "1.2.1")
+	   jvmMainCompileOnly   (group = "dev.kord",              name = "kord-common",                version = "0.8.0-M5")
+	commonMainCompileOnly   (group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version = "1.3.0-RC")
 	commonMainApi           (group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",           version = "0.2.1")
-	commonMainImplementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",    version = "1.5.+")
+	commonMainImplementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",    version = "1.5.2")
 }

@@ -21,7 +21,7 @@ buildscript {
 plugins {
 	kotlin("multiplatform")                   version "1.5.30"
 	kotlin("plugin.serialization")            version "1.5.30" apply false
-	id("com.bnorm.power.kotlin-power-assert") version "0.9.0"  apply false
+	id("com.bnorm.power.kotlin-power-assert") version "0.10.0" apply false
 	`maven-publish`
 }
 
