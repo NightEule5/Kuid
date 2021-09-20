@@ -9,6 +9,4 @@ dependencies()
 	commonMainCompileOnly   (group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version = "1.2.1")
 	commonMainApi           (group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",           version = "0.2.1")
 	commonMainImplementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",    version = "1.5.+")
-	
-	commonTestImplementation(group = "io.kotest", name = "kotest-runner-junit5", version = "4.6.+")
 }

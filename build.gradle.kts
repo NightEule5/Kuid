@@ -3,6 +3,7 @@ import dev.strixpyrr.shorthand.CompilerArgumentScope.Companion.RequiresOptIn
 import dev.strixpyrr.shorthand.JvmDefaultMode.All
 import dev.strixpyrr.shorthand.applyPlugins
 import dev.strixpyrr.shorthand.freeCompilerArgs
+import dev.strixpyrr.shorthand.getting
 
 buildscript {
 	repositories()
@@ -108,9 +109,14 @@ subprojects()
 		}
 	}
 	
+	dependencies()
+	{
+		"jvmTestImplementation"(group = "io.kotest", name = "kotest-runner-junit5", version = "4.6.+")
+	}
+	
 	tasks()
 	{
-		withType<Test>()
+		val jvmTest: Test by getting()
 		{
 			useJUnitPlatform()
 		}
