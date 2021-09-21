@@ -13,9 +13,33 @@
 // limitations under the License.
 package dev.strixpyrr.kuid.snowflake
 
+import dev.strixpyrr.kuid.internal.maxCountOf
+import dev.strixpyrr.kuid.internal.maxValueOf
 import kotlinx.datetime.Instant
 import kotlin.jvm.JvmField
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.ExperimentalTime
 
+/**
+ * @property maxWorkers
+ * Gets the maximum unique worker count each process can support without collision.
+ * This is equal to `2^n` where `n` is [workerIdLength].
+ * @property maxProcesses
+ * Gets the maximum unique process count supported without collision.
+ * This is equal to `2^n` where `n` is [processIdLength].
+ * @property maxGenerators
+ * Gets the maximum unique generator count supported without collision.
+ * This is equal to the sum of [maxWorkers] and [maxProcesses].
+ * @property maxIncrements
+ * Gets the maximum increments until a 1ms delay is needed to avoid collision.
+ * This is equal to `2^n` where `n` is [incrementLength].
+ * @property timeOverflowDuration
+ * Gets the time [Duration] until timestamp field will overflow.
+ * @property timeOverflowInstant
+ * Gets the [Instant] the timestamp field will overflow.
+ */
+@OptIn(ExperimentalTime::class)
 sealed class SnowflakeLayout(
 	@JvmField val timestampEpoch: Long,
 	@JvmField val timestampLength: Int = DefaultTimestampLength,
@@ -29,8 +53,22 @@ sealed class SnowflakeLayout(
 	@JvmField val  workerIdShift = timestampShift -  workerIdLength
 	@JvmField val processIdShift =  workerIdShift - processIdLength
 	@JvmField val  processIdMask = (-1L shl processIdLength).inv() shl processIdShift
-	@JvmField val   workerIdMask = (-1L shl  workerIdLength).inv() shl workerIdShift
+	@JvmField val   workerIdMask = (-1L shl  workerIdLength).inv() shl  workerIdShift
 	@JvmField val  incrementMask = (-1L shl incrementLength).inv()
+	
+	private inline val idLength get() = workerIdLength + processIdLength
+	
+	// Metadata from snowflake-id and by extension, IdGen
+	val maxWorkers    get() = maxCountOf( workerIdLength)
+	val maxProcesses  get() = maxCountOf(processIdLength)
+	val maxGenerators get() = maxCountOf(       idLength)
+	val maxIncrements get() = maxCountOf(incrementLength)
+	val maxTimestamps get() = maxCountOf(timestampLength)
+	val timeOverflowDuration get() =
+		milliseconds(maxTimestamps)
+	val timeOverflowInstant  get() =
+		Instant.fromEpochMilliseconds(timestampEpoch) +
+		timeOverflowDuration
 	
 	object Twitter : SnowflakeLayout(1288834974657L, 42, 5, 5, 12)
 	object Discord : SnowflakeLayout(1420070400000L, 42, 5, 5, 12)
@@ -69,16 +107,32 @@ sealed class SnowflakeLayout(
 		var processIdLength: Int  = DefaultProcessIdLength
 		var incrementLength: Int  = DefaultIncrementLength
 		
+		private inline val idLength get() = workerIdLength + processIdLength
+		
+		// Metadata
+		val maxWorkers    get() = maxValueOf( workerIdLength)
+		val maxProcesses  get() = maxValueOf(processIdLength)
+		val maxGenerators get() = maxValueOf(       idLength)
+		val maxIncrements get() = maxCountOf(incrementLength)
+		val maxTimestamps get() = maxCountOf(timestampLength)
+		val timeOverflowDuration get() =
+			milliseconds(maxTimestamps)
+		val timeOverflowInstant  get() =
+			Instant.fromEpochMilliseconds(timestampEpochOrThrow) +
+			timeOverflowDuration
+		
+		private val timestampEpochOrThrow get() =
+			timestampEpoch ?:
+			throw Exception("The TimestampEpoch property was not set.")
+		
 		fun finalize(): SnowflakeLayout
 		{
-			val timestampEpoch =
-				timestampEpoch ?:
-				throw Exception("The TimestampEpoch property was not set.")
+			val timestampEpoch = timestampEpochOrThrow
 			
 			return Custom(
 				timestampEpoch,
 				timestampLength,
-				workerIdLength,
+				 workerIdLength,
 				processIdLength,
 				incrementLength
 			)
