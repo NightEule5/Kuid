@@ -13,10 +13,11 @@
 // limitations under the License.
 package dev.strixpyrr.kuid.snowflake
 
+import dev.strixpyrr.kuid.IIdGenerator
+import dev.strixpyrr.kuid.internal.maxValueOf
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.datetime.Clock
-import dev.strixpyrr.kuid.IIdGenerator
 import kotlin.jvm.JvmField
 
 /**
@@ -54,9 +55,9 @@ class SnowflakeGenerator(
 	
 	init
 	{
-		require( workerId in 0 until (1 shl layout. workerIdLength)) // [0,2^n)
-		require(processId in 0 until (1 shl layout.processIdLength))
-		require(increment in 0 until (1 shl layout.incrementLength))
+		require( workerId in 0..maxValueOf(layout. workerIdLength)) // [0,2^n)
+		require(processId in 0..maxValueOf(layout.processIdLength))
+		require(increment in 0..maxValueOf(layout.incrementLength))
 	}
 	
 	private val mutex = Mutex()
