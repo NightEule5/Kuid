@@ -19,8 +19,8 @@ buildscript {
 }
 
 plugins {
-	kotlin("multiplatform")                   version "1.5.30"
-	kotlin("plugin.serialization")            version "1.5.30" apply false
+	kotlin("multiplatform")                   version "1.5.31"
+	kotlin("plugin.serialization")            version "1.5.31" apply false
 	id("com.bnorm.power.kotlin-power-assert") version "0.10.0" apply false
 	`maven-publish`
 }
@@ -35,7 +35,7 @@ allprojects()
 	}
 	
 	group = "dev.strixpyrr.kuid"
-	version = "0.0.1"
+	version = "0.0.2"
 	
 	repositories()
 	{
