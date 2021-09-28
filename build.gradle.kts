@@ -5,25 +5,16 @@ import dev.strixpyrr.shorthand.applyPlugins
 import dev.strixpyrr.shorthand.freeCompilerArgs
 import dev.strixpyrr.shorthand.getting
 
-buildscript {
-	repositories()
-	{
-		maven(url = "https://jitpack.io")
-		mavenLocal()
-	}
-	
-	dependencies()
-	{
-		classpath(group = "dev.strixpyrr", name = "shorthand", version = "0.0.1")
-	}
-}
-
 plugins {
 	kotlin("multiplatform")                   version "1.5.31"
 	kotlin("plugin.serialization")            version "1.5.31" apply false
 	id("com.bnorm.power.kotlin-power-assert") version "0.10.0" apply false
+	id("dev.strixpyrr.shorthand")
 	`maven-publish`
 }
+
+// Workaround for #18237
+var _deps = deps
 
 allprojects()
 {
@@ -111,7 +102,7 @@ subprojects()
 	
 	dependencies()
 	{
-		"jvmTestImplementation"(group = "io.kotest", name = "kotest-runner-junit5", version = "4.6.+")
+		"jvmTestImplementation"(_deps.kotest)
 	}
 	
 	tasks()
