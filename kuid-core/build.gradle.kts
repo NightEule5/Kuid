@@ -5,7 +5,6 @@ plugins {
 
 dependencies()
 {
-	   jvmMainCompileOnly   (deps.kord.common          )
 	commonMainCompileOnly   (deps.kotlinx.serialization)
 	commonMainApi           (deps.kotlinx.datetime     )
 	commonMainImplementation(deps.kotlinx.coroutines   )
