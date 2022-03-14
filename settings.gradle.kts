@@ -26,6 +26,6 @@ dependencyResolutionManagement()
 	}
 }
 
-rootProject.name = "Kuid"
+rootProject.name = "kuid"
 
 include("kuid-core")
