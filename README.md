@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation(group = "dev.strixpyrr.kuid", name = "kuid", version = "0.0.2")
+    implementation(group = "dev.strixpyrr.kuid", name = "kuid", version = "0.1.0")
 }
 ```
 
