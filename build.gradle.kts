@@ -6,8 +6,8 @@ import dev.strixpyrr.shorthand.freeCompilerArgs
 import dev.strixpyrr.shorthand.getting
 
 plugins {
-	kotlin("multiplatform")                   version "1.5.31"
-	kotlin("plugin.serialization")            version "1.5.31" apply false
+	kotlin("multiplatform")                   version "1.6.10"
+	kotlin("plugin.serialization")            version "1.6.10" apply false
 	id("com.bnorm.power.kotlin-power-assert") version "0.10.0" apply false
 	id("dev.strixpyrr.shorthand")
 	`maven-publish`
@@ -59,7 +59,7 @@ subprojects()
 				kotlinOptions.run()
 				{
 					jvmTarget       = "1.8"
-					languageVersion = "1.5"
+					languageVersion = "1.6"
 					
 					freeCompilerArgs()
 					{
@@ -75,7 +75,7 @@ subprojects()
 			{
 				kotlinOptions.run()
 				{
-					languageVersion = "1.5"
+					languageVersion = "1.6"
 				}
 			}
 		}
